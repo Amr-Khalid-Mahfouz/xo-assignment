@@ -1,5 +1,6 @@
-#ifndef _4X4X_O_H
-#define _4X4X_O_H
+
+#ifndef _3X3X_O_H
+#define _3X3X_O_H
 
 #include "BoardGame_Classes.h"
 #include <ctime>
@@ -33,6 +34,10 @@ public:
     xo_4x4_random (T symbol);
     void getmove(int &x, int &y) ;
 };
+
+
+
+
 
 //--------------------------------------- IMPLEMENTATION
 
@@ -120,7 +125,7 @@ bool xo_4x4_board<T>::update_board(int x, int y, T mark) {
             return false;
         }
         else if (x-1>=0 && x+1<4 && y-1 >= 0 && y+1< 4 && (this->board[x-1][y]=='X' || this->board[x-1][y]=='O') && (this->board[x+1][y]=='X' || this->board[x+1][y]=='O') &&
-                (this->board[x][y-1]=='X' || this->board[x][y-1]=='O') && (this->board[x][y+1]=='X' || this->board[x][y+1]=='O')){
+                 (this->board[x][y-1]=='X' || this->board[x][y-1]=='O') && (this->board[x][y+1]=='X' || this->board[x][y+1]=='O')){
             if ((names[0]->getname()!="Random Computer Player" && this->n_moves%2==0) || (names[1]->getname()!="Random Computer Player" && this->n_moves%2))
                 cout << "You can't move this\n";
             return false;
@@ -181,14 +186,14 @@ bool xo_4x4_board<T>::update_board(int x, int y, T mark) {
 template <typename T>
 void xo_4x4_board<T>::display_board() {
     for (int i = 0; i < this->rows; i++) {
+        cout << "\n| ";
         for (int j = 0; j < this->columns; j++) {
-            cout << "| (" << i << "," << j << ")";
-            
-            if(this->board[i][j] == 0){cout << setfill(' ') << setw(2) << ' ';}
-            else{cout << setfill(' ') << setw(2) << this->board[i][j];}
+            cout << "(" << i << "," << j << ")";
+            cout << setw(2) << this->board[i][j] << " |";
         }
-        cout << "|\n";
-        cout << setfill('-') << setw(8*4 + 2) << "\n";}
+        cout << "\n-----------------------------";
+    }
+    cout << endl;
 }
 
 // Returns true if there is any winner
@@ -209,7 +214,6 @@ bool xo_4x4_board<T>::is_win() {
     }
     return false;
 }
-
 template <typename T>
 bool xo_4x4_board<T>::is_draw() {
     return false;
@@ -228,8 +232,7 @@ xo_4x4_player<T>::xo_4x4_player(string name, T symbol) : Player<T>(name, symbol)
 
 template <typename T>
 void xo_4x4_player<T>::getmove(int& x, int& y) {
-    cout << "\nselect the piece you want to move\n";
-    cout << "enter your move x and y (0 to 3) separated by spaces: ";
+    cout << "\nPlease enter your move x and y (0 to 3) separated by spaces: ";
     cin >> x >> y;
 }
 
@@ -248,4 +251,11 @@ void xo_4x4_random<T>::getmove(int& x, int& y) {
     y = rand() % this->dimension;
 }
 
-#endif //_4X4X_O_H
+
+
+
+
+
+
+#endif //_3X3X_O_H
+
