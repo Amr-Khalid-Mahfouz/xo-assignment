@@ -5,6 +5,7 @@
 #include "word_xo.h"
 #include "Numerical_xo.h"
 #include "inverse_xo.h"
+#include "4x4_xo.h"
 #include "9x9_xo.h"
 
 int main(){
@@ -204,8 +205,32 @@ int main(){
                         break;
                 }                
                 break;                
-                break;
             case 7 :
+                switch(player1) {
+                    case 1:
+                        players[0] = new xo_4x4_player<char>(playerXName, 'X');
+                        break;
+                    case 2:
+                        players[0] = new xo_4x4_random<char>('X');
+                        break;
+                    default:
+                        cout << "Invalid choice for Player 1\n";
+                        break;
+                }                
+
+                switch(player2) {
+                    case 1:
+                        players[1] = new xo_4x4_player<char>(player2Name, 'O');
+                        break;
+                    case 2:
+                        players[1] = new xo_4x4_random<char>('O');
+                        break;
+                    default:
+                        cout << "Invalid choice for Player 2\n";
+                        break;
+                }
+
+                B = new xo_4x4_board<char>(players);
                 break;
             case 8 :
                 B = new xo_9x9_board();
